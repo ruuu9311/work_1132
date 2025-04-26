@@ -28,12 +28,6 @@
             color: #6b7cbf !important;
         }
         
-        /* Logo styling for both desktop and mobile */
-        .logo-center {
-            height: 40px;
-            margin-right: 10px;
-        }
-        
         .nav-link {
             color: #333333 !important;
             font-weight: 500;
@@ -44,7 +38,17 @@
         .nav-link:hover {
             color: #6b7cbf !important;
         }
-        
+
+        /* Logo styling for both desktop and mobile */
+        .logo-center {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 40px;
+            z-index: 1050;
+        }
+
         .hero-section {
             padding: 80px 20px;
             background: linear-gradient(135deg, rgba(164, 182, 252, 0.2) 0%, rgba(107, 124, 191, 0.4) 100%);
