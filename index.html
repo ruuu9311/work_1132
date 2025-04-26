@@ -4,55 +4,299 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>蔡鈞如的求職自傳履歷</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style type="text/css">
-		* { font-family:"Noto Sans 思源黑體", sans-serif; mx-auto }
-		.bg-blue0 { background-color: #e6e9f5; }  
-		.bg-blue1 { background-color: #b1bce6; }  
-		.bg-blue2 { background-color: #a4b6fc; }   
-		.bg-blue3 { background-color: #6b7cbf; }
-		.td{ padding: 8px; border: none; }  
-		.navbar-nav {
-            margin: 0 auto;
+        * { font-family: "Noto Sans 思源黑體", sans-serif; }
+        
+        body {
+            background-color: #f8f4e8;
+            color: #333333;
+            line-height: 1.8;
         }
-        .hero-img {
-            width: 50%;
-            height: auto;
-            border-radius: 1rem;
-            margin-bottom: 2rem;
+        
+        /* 導航欄樣式 */
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 10px rgba(107, 124, 191, 0.1);
+            padding: 15px 0;
         }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #6b7cbf !important;
+        }
+        
+        .nav-link {
+            color: #333333 !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #6b7cbf !important;
+        }
+        
+        /* logo位置 */
+        .logo-center {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 40px;
+            z-index: 1050;
+        }
+        
+        /* 英雄區域樣式 */
+        .hero-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(164, 182, 252, 0.2) 0%, rgba(107, 124, 191, 0.4) 100%);
+            border-radius: 0 0 16px 16px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #6b7cbf;
+        }
+        
+        .hero-section p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #666666;
+            text-align: center;
+            display: inline-block;
+            text-align: left;
+        }
+        
+        /* 內容區塊樣式 */
+        .content-block {
+            background-color: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(107, 124, 191, 0.1);
+        }
+        
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #6b7cbf;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 40%;
+            height: 3px;
+            background-color: #ffb84d;
+            bottom: -5px;
+            left: 30%;
+        }
+        
+        /* 個人信息樣式 */
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .profile-image {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(107, 124, 191, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .info-list {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(164, 182, 252, 0.2);
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list a {
+            color: #6b7cbf;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+        
+        .info-list a:hover {
+            color: #ffb84d;
+        }
+        
+        /* 經歷樣式 */
+        .experience-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .experience-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #ffb84d;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .experience-link {
+            color: #6b7cbf;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .experience-link:hover {
+            color: #ffb84d;
+        }
+        
+        .experience-link i {
+            margin-left: 5px;
+        }
+        
+        /* 領域列表樣式 */
         .domain-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            padding: 0 25px;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
-
+        
         .domain-item {
-            background-color: #7586c9; /* 固定白色背景 */
-            padding: 7px 5px;
+            background-color: rgba(107, 124, 191, 0.1);
+            color: #6b7cbf;
+            padding: 12px 8px;
             text-align: center;
-            border-radius: 3px;
-            font-size: 0.85rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
             font-weight: 500;
+            box-shadow: 2px 2px 1px #ffb84d;
         }
-	</style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+       
+        /* 常用連結樣式 */
+        .quick-links {
+            padding: 30px;
+            background-color: white;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(107, 124, 191, 0.1);
+            ;
+        }
+        
+        .links-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .link-item {
+            padding: 1px 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .link-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #6b7cbf;
+        }
+        
+        .link-title {
+            font-weight: 600;
+            color: #333333;
+        }
+        
+        .link-url {
+            color: #6b7cbf;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+        
+        .link-url:hover {
+            color: #ffb84d;
+        }
+        
+        /* 頁腳樣式 */
+        footer {
+            padding: 30px 0;
+            background-color: #6b7cbf;
+            color: white;
+            border-radius: 16px 16px 0 0;
+            margin-top: 40px;
+        }
+        
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 15px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .content-block {
+                padding: 20px;
+            }
+            
+            .domain-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 10px;
+            }
+            
+            .links-container {
+                gap: 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <!-- 導航欄 -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">🏠︎ 首頁</a>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i> 首頁</a>
+            
+            <!-- LOGO圖片 -->
+            <img src="name.png" alt="蔡鈞如" class="logo-center">
+            
             <button class="navbar-toggler" type="button" 
             data-bs-toggle="collapse" data-bs-target="#ITEMS">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse"id="ITEMS">
-                <ul class="navbar-nav container-fluid justify-content-end" >
+            <div class="collapse navbar-collapse" id="ITEMS">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link " href="career.html">職涯測驗</a>
+                        <a class="nav-link" href="career.html">職涯測驗</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="job.html">目標職位介紹</a>
@@ -64,101 +308,131 @@
             </div>
         </div>
     </nav>
+
+    <!-- 英雄區域 -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>歡迎來到我的個人網站</h1>
+            <p>這是一個展示我的職涯測驗結果、目標職位介紹以及個人履歷的網站。在這裡，您可以了解我的專業技能、學習經歷與未來發展方向。</p>
+            <!-- 可以在這裡添加圖片 -->
+        </div>
+    </section>
+
     <!-- 主要內容 -->
-    <main class="container-fluid text-center bg-blue0">
-		<div class="row">
-			<section>
-		    	<main class="container my-5 ">
-		        <h1>歡迎來到我的個人網站</h1>
-		        <p class="text-wrap">這是一個展示我的職涯測驗結果、目標職位介紹以及個人履歷的網站。</p>
-		        <hr>
-	        </section>
+    <main class="container">
+        <div class="row">
+            <!-- 關於我 -->
+            <div class="col-md-4 mb-4">
+                <div class="content-block h-100">
+                    <h2 class="section-title text-center">關於我</h2>
+                    <div class="profile-info">
+                        <img src="pic/Q.png" alt="--個人照片" class="profile-image">
+                        <ul class="info-list list-unstyled">
+                            <li><strong>姓名：</strong>蔡鈞如 (Jun-Ru Tsai)</li>
+                            <li><strong>學校：</strong>靜宜大學</li>
+                            <li><strong>科系：</strong>資訊管理學系</li>
+                            <li><strong>學號：</strong>411211244</li>
+                            <li><strong>電話：</strong><a href="tel:0966751910">0966751910</a></li>
+                            <li><strong>Email：</strong><a href="mailto:ruuu9311@gmail.com">ruuu9311@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-	        <div class="row g-0">
+            <!-- 個人經歷 -->
+            <div class="col-md-4 mb-4">
+                <div class="content-block h-100">
+                    <h2 class="section-title text-center">個人經歷</h2>
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <span>參加107年度全國合唱比賽-優等</span>
+                            <a href="https://youtu.be/3Yg1srbzVdo?si=fhBAx-i5t6mtVVgs" class="experience-link" target="_blank">
+                                <i class="fas fa-play-circle"></i>
+                            </a>
+                        </div>
+                        <div class="experience-item">
+                            <span>參加109年度全國合唱比賽-特優</span>
+                        </div>
+                        <div class="experience-item">
+                            <span>參加行動軟體開發期末APP競賽-第二名</span>
+                            <a href="https://youtu.be/NeqGvQ_vomA?si=auEO1XTtLnwa8_4h" class="experience-link" target="_blank">
+                                <i class="fas fa-play-circle"></i>
+                            </a>
+                        </div>
+                        <div class="experience-item">
+                            <span>參與113學年度縣市大專生暑期營隊工讀</span>
+                            <a href="https://sites.google.com/view/2024taihe-study-summercamp/" class="experience-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="experience-item">
+                            <span>擔任113學年度資訊管理學系學習助理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-		        <section class="col-12 col-lg-4 bg-blue1 text-white">
-		            <div style="height: 30px;"></div>
-		            <h2>關於我</h2>
-		            <ul class="list-unstyled">
-		                <li><strong>姓名：</strong>蔡鈞如 (Jun-Ru Tsai)</li>
-		                <li><strong>學校：</strong>靜宜大學</li>
-		                <li><strong>科系：</strong>資訊管理學系</li>
-		                <li><strong>學號：</strong>411211244</li>
-		                <li><strong>電話：</strong><a href="tel:0966751910" style="color: #ffffff;">0966751910</a>
-		                <li><strong>Email：</strong><a href="mailto:ruuu9311@gmail.com" style="color: #ffffff;">ruuu9311@gmail.com</a></li>
-		            </ul>
-		            <div style="height: 10px;"></div>
-		        </section>
-
-		        <section class="col-12 col-lg-4 bg-blue2 text-white">
-		            <div style="height: 30px;"></div>
-		            <h2>個人經歷</h2>
-		            <div style="height: 10px;"></div>
-		            <ul class="list-unstyled">
-		                <li>參加107年度全國合唱比賽-優等<a href="https://youtu.be/3Yg1srbzVdo?si=fhBAx-i5t6mtVVgs" style="color: white; text-decoration: none;"><strong> 【 ▶︎ 】</strong></a></li>
-		                <li>參加109年度全國合唱比賽-特優</li>
-		                <li>參加行動軟體開發期末APP競賽-第二名<a href="https://youtu.be/NeqGvQ_vomA?si=auEO1XTtLnwa8_4h" style="color: white; text-decoration: none;"><strong> 【 ▶︎ 】</strong></a></li>
-		                <li>參與113學年度縣市大專生暑期營隊工讀<a href="https://sites.google.com/view/2024taihe-study-summercamp/" style="color: white; text-decoration: none;"><strong> 【 ▶︎ 】</strong></a></li>
-		                <li>擔任113學年度資訊管理學系學習助理</li>
-		            </ul>
-		            <div style="height: 10px;"></div>
-		        </section>
-
-		        <section class="col-12 col-lg-4 bg-blue3 text-white">
-				    <div style="height: 30px;"></div>
-				    <h3 class="section-title">曾接觸過的領域</h3>
-				    <div style="height: 10px;"></div>
+            <!-- 曾接觸過的領域 -->
+            <div class="col-md-4 mb-4">
+                <div class="content-block h-100">
+                    <h2 class="section-title text-center">曾接觸過的領域</h2>
                     <div class="domain-grid">
-                        <div class="domain-item">經濟學</div>
-                        <div class="domain-item">管理學</div>
-                        <div class="domain-item">計算機概論</div>
-                        <div class="domain-item">會計學</div>
-                        <div class="domain-item">資訊數學</div>
-                        <div class="domain-item">JAVA程式設計</div>
-                        <div class="domain-item">統計學</div>
-                        <div class="domain-item">資料結構</div>
-                        <div class="domain-item">網路通訊概論</div>
-                        <div class="domain-item">程式語言</div>
-                        <div class="domain-item">電子商務</div>
-                        <div class="domain-item">行動應用軟體開發</div>
-                        <div class="domain-item">物聯網概論</div>
+                        <div class="domain-item ">經濟學</div>
+                        <div class="domain-item ">管理學</div>
+                        <div class="domain-item ">計算機概論</div>
+                        <div class="domain-item ">程式設計</div>
+                        <div class="domain-item ">資訊數學</div>
+                        <div class="domain-item ">會計學</div>
+                        <div class="domain-item ">統計學</div>
+                        <div class="domain-item ">資料結構</div>
+                        <div class="domain-item ">網路通訊概論</div>
+                        <div class="domain-item ">程式語言</div>
+                        <div class="domain-item ">電子商務</div>
+                        <div class="domain-item ">行動應用軟體開發</div>
+                        <div class="domain-item ">物聯網概論</div>
                         <div class="domain-item">巨量分析導論</div>
                         <div class="domain-item">資料庫管理</div>
                         <div class="domain-item">C語言程式設計</div>
                         <div class="domain-item">資訊管理導論</div>
                         <div class="domain-item">前端網頁程式設計</div>
                     </div>
-				    <div style="height: 30px;"></div>
-				</section>
-    	</div>
-    </div>
-    <div style="height: 20px;"></div>
-	<!-- 常用連結 -->
-	<div class="container d-flex flex-column flex-lg-row align-items-center justify-content-center gap-2 text-center">
-	    <h3 class="mb-2 mb-lg-0">常用連結</h3>
-	    <div class="d-flex flex-column flex-lg-row align-items-center gap-2">
-	        <div>
-	            <strong>E校園：</strong>
-	            <a href="https://alcat.pu.edu.tw/index.php" style="color: #000000;">https://alcat.pu.edu.tw</a>
-	        </div>
-	        <div>
-	            <strong>玩課雲 WOW Class：</strong>
-	            <a href="https://tronclass.pu.edu.tw/#/" style="color: #000000;">https://tronclass.pu.edu.tw</a>
-	        </div>
-	        <div>
-	            <strong>Outlook：</strong>
-	            <a href="https://outlook.office.com/mail/" style="color: #000000;">https://outlook.office.com</a>
-	        </div>
-	    </div>
-	</div>
+                </div>
+            </div>
+        </div>
 
-
-    <div style="height: 20px;"></div>
-	</main>
+        <!-- 常用連結 -->
+        <section class="quick-links">
+            <h3 class="section-title text-center">常用連結</h3>
+            <div class="links-container">
+                <div class="link-item">
+                    <div class="link-title">E校園：<a href="https://alcat.pu.edu.tw/index.php" class="link-url" target="_blank">https://alcat.pu.edu.tw</a></div>
+                    
+                </div>
+                <div class="link-item">
+                    <div class="link-title">玩課雲 WOW Class：<a href="https://tronclass.pu.edu.tw/#/" class="link-url" target="_blank">https://tronclass.pu.edu.tw</a></div>
+                    
+                </div>
+                <div class="link-item">
+                    <div class="link-title">Outlook：<a href="https://outlook.office.com/mail/" class="link-url" target="_blank">https://outlook.office.com</a></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- 頁腳 -->
-    <footer class="text-center mt-3">
-        <p class="text-wrap">Copyright © 2025 蔡鈞如. All Rights Reserved.</p>
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-3">
+                <a href="index.html" class="text-white text-decoration-none mx-2">首頁</a>
+                <span class="text-white-50">|</span>
+                <a href="career.html" class="text-white text-decoration-none mx-2">職涯測驗</a>
+                <span class="text-white-50">|</span>
+                <a href="job.html" class="text-white text-decoration-none mx-2">目標職位介紹</a>
+                <span class="text-white-50">|</span>
+                <a href="resume.html" class="text-white text-decoration-none mx-2">自傳與履歷</a>
+            </p>
+            <p class="mb-0">Copyright © 2025 蔡鈞如. All Rights Reserved.</p>
+        </div>
     </footer>
 </body>
 </html>
