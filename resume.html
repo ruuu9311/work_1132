@@ -9,6 +9,10 @@
     <style type="text/css">
         * { font-family: "Noto Sans 思源黑體", sans-serif; }
         
+        html {
+            scroll-behavior: smooth; /* 平滑滾動效果 */
+        }
+        
         body {
             background-color: #f8f4e8;
             color: #333333;
@@ -20,14 +24,13 @@
             background-color: white !important;
             box-shadow: 0 2px 10px rgba(107, 124, 191, 0.1);
             padding: 15px 0;
-            position: relative;
         }
         
         .navbar-brand {
             font-weight: 700;
             font-size: 1.3rem;
             color: #6b7cbf !important;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
         
         .navbar-brand:hover {
@@ -39,7 +42,7 @@
             font-weight: 500;
             margin: 0 10px;
             position: relative;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
         
         .nav-link:hover {
@@ -58,13 +61,14 @@
         
         /* 英雄區域樣式 */
         .hero-section {
-            padding: 80px 20px;
+            padding-top: 48px ;
+            padding-bottom: 26px;
             background: linear-gradient(135deg, rgba(164, 182, 252, 0.2) 0%, rgba(107, 124, 191, 0.4) 100%);
-            border-radius: 0 0 16px 16px;
-            margin-bottom: 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
             text-align: center;
             position: relative;
-            overflow: hidden;
+            scroll-margin-top: 140px;
         }
         
         .hero-section h1 {
@@ -72,6 +76,27 @@
             font-size: 2.5rem;
             margin-bottom: 20px;
             color: #6b7cbf;
+        }
+        
+        /* 快速導航按鈕樣式 */
+        .quick-nav-buttons {
+            margin-top: 20px;
+        }
+        
+        .btn-primary {
+            background-color: #6b7cbf;
+            border-color: #6b7cbf;
+            border-radius: 30px;
+            padding: 8px 20px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ffb84d;
+            border-color: #ffb84d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 184, 77, 0.3);
         }
         
         /* 卡片樣式 */
@@ -83,6 +108,7 @@
             box-shadow: 0 5px 15px rgba(107, 124, 191, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
+            scroll-margin-top: 140px; /* 為固定導航欄預留空間 */
         }
         
         .section-title {
@@ -190,10 +216,26 @@
     <!-- 英雄區域 -->
     <section class="hero-section">
         <div class="container">
-            <h1>⎙ 我的自傳與履歷</h1>
+            <h1>我的自傳與履歷</h1>
             <!-- 可以在這裡添加一個小圖標或裝飾元素 -->
             <div class="hero-icon">
                 <!-- 此處可放置SVG圖標 -->
+            </div>
+            
+            <!-- 快速導航按鈕 -->
+            <div class="quick-nav-buttons">
+                <a href="#自我介紹" class="btn btn-primary mx-2 mb-2">
+                    <i class="fas fa-user-circle me-2"></i>自我介紹
+                </a>
+                <a href="#技術技能" class="btn btn-primary mx-2 mb-2">
+                    <i class="fas fa-laptop-code me-2"></i>技術技能
+                </a>
+                <a href="#適合工作" class="btn btn-primary mx-2 mb-2">
+                    <i class="fas fa-briefcase me-2"></i>適合工作
+                </a>
+                <a href="#未來規劃" class="btn btn-primary mx-2 mb-2">
+                    <i class="fas fa-road me-2"></i>未來規劃
+                </a>
             </div>
         </div>
     </section>
@@ -202,7 +244,7 @@
     <main class="container">
         <div class="row g-4">
             <div class="col-lg-6">
-                <div class="content-card">
+                <div id="自我介紹" class="content-card">
                     <h2 class="section-title">自我介紹</h2>
                     
                     <!-- 大螢幕時左右布局，小螢幕時上下布局 -->
@@ -221,18 +263,18 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="content-card">
+                <div id="技術技能" class="content-card">
                     <h2 class="section-title">技術技能</h2>
                     <ul class="skills-list list-unstyled">
-                        <li>HTML5、CSS3 + RWD 響應式網頁設計</li>
-                        <li>JavaScript 與 Bootstrap 建構互動元件與網站版型</li>
-                        <li>Power BI 進行報表製作與視覺化分析</li>
-                        <li>SQL 增、刪、查、改的基本語法與彙總</li>
-                        <li>具備 C 語言基礎，理解程式邏輯與指標概念</li>
-                        <li>以 Java 撰寫基本物件導向程式，熟悉建構子與類別等概念</li>
-                        <li>Figma 設計與製作UI/UX原型，理解基本介面設計與流程規劃</li>
-                        <li>接觸過 Kotlin，了解 Android App 開發基礎架構與畫面設計</li>
-                        <li>使用 C 語言 於 Arduino IDE 開發實體互動專案，具備硬體感測器控制與程式邏輯設計經驗</li>
+                        <li>使用<strong>HTML5</strong>、<strong>CSS3</strong> 設計 <strong>RWD</strong> 響應式網頁設計</li>
+                        <li>接觸<strong>JavaScript</strong> 與 <strong>Bootstrap</strong> 建構互動元件與網站版型</li>
+                        <li>利用<strong>Power BI </strong>進行報表製作與視覺化分析</li>
+                        <li>理解<strong>SQL</strong> 增、刪、查、改的基本語法與彙總</li>
+                        <li>具備 <strong>C 語言</strong>基礎，理解程式邏輯與指標概念</li>
+                        <li>以 <strong>Java </strong>撰寫基本物件導向程式，熟悉建構子與類別等概念</li>
+                        <li>用<strong>Figma</strong> 設計與製作<strong>UI/UX</strong>原型，理解基本介面設計與流程規劃</li>
+                        <li>接觸過 <strong>Kotlin</strong>，了解 <strong>Android App </strong>開發基礎架構與畫面設計</li>
+                        <li>使用<strong> C 語言</strong> 於 <strong>Arduino IDE </strong>開發實體互動專案，具備硬體感測器控制與程式邏輯設計經驗</li>
                     </ul>
                 </div>
             </div>
@@ -240,7 +282,7 @@
 
         <div class="row g-4 mt-2">
             <div class="col-lg-6">
-                <div class="content-card">
+                <div id="適合工作" class="content-card">
                     <h2 class="section-title">為何適合這些工作</h2>
                     <p>我認為自己對程式設計和網頁設計有一定的基礎，並且<span class="highlight">願意持續學習和提升自己</span>。在過去的學習中，我掌握了基本的程式設計技巧，並且在課堂中完成了一些與程式設計和網頁設計相關的專案。</p>
                     <p>這些經歷讓我更清楚自己對解決問題的興趣，也了解到如何運用程式語言實現具體的功能。雖然還有很多地方需要進步，但我有信心能夠通過不斷的學習和實踐，繼續提升自己的技術。</p>
@@ -248,7 +290,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="content-card">
+                <div id="未來規劃" class="content-card">
                     <h2 class="section-title">未來規劃</h2>
                     <p><strong>修習進階課程：</strong>希望學習更多前端框架（如React、Vue）與後端技術的知識，增加自己的全端開發能力。</p>
                     <p><strong>實習與專案經驗：</strong>我打算積極尋找校內外實習機會，並參與一些實際專案，我認為在真實的工作環境中學習最能夠提升自己的技術與解決問題能力，透過實戰演練程式設計技能學習團隊合作與專案管理。</p>

@@ -9,6 +9,10 @@
     <style type="text/css">
         * { font-family: "Noto Sans 思源黑體", sans-serif; }
         
+        html {
+            scroll-behavior: smooth; /* 平滑滾動效果 */
+        }
+        
         body {
             background-color: #f8f4e8;
             color: #333333;
@@ -44,6 +48,7 @@
         .nav-link:hover {
             color: #6b7cbf !important;
         }
+        
         .logo-center {
             position: fixed;
             top: 15px;
@@ -60,6 +65,8 @@
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 5px 15px rgba(107, 124, 191, 0.1);
+            position: relative;
+            scroll-margin-top: 140px; /* 為固定導航欄預留空間 */
         }
         
         .section-title {
@@ -68,6 +75,8 @@
             color: #6b7cbf;
             position: relative;
             display: inline-block;
+            margin-left: 0; /* 不再需要為圖標預留空間 */
+            padding-left: 0;
         }
         
         .section-title::after {
@@ -78,6 +87,15 @@
             background-color: #ffb84d;
             bottom: -5px;
             left: 30%;
+        }
+        
+        /* 快速導航欄樣式 */
+        .quick-nav {
+            position: absolute;
+            z-index: 999;
+            padding: 10px 0;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 2px 10px rgba(107, 124, 191, 0.1);
         }
         
         /* 卡片樣式優化 */
@@ -136,25 +154,24 @@
             text-decoration: none;
         }
 
-        /* 測驗類型圖標樣式 */
-        .test-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: rgba(107, 124, 191, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-            font-size: 2.5rem;
-            color: #6b7cbf;
+        /* 在大屏幕時的標題樣式 */
+        @media (min-width: 992px) {
+            .title-container {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                margin-left: 0;
+                padding-left: 0;
+            }
         }
-
-        /* 雷達圖表樣式 */
-        .radar-chart {
-            max-width: 100%;
-            height: auto;
-            margin: 20px auto;
+        
+        @media (max-width: 991.98px) {
+            .content-wrapper {
+                padding-top: 20px;
+            }
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -193,42 +210,12 @@
     <section class="py-5" style="background: linear-gradient(135deg, rgba(164, 182, 252, 0.2) 0%, rgba(107, 124, 191, 0.4) 100%); border-radius: 0 0 16px 16px; margin-bottom: 40px;">
         <div class="container text-center">
             <h1 class="fw-bold mb-4" style="color: #6b7cbf; font-size: 2.5rem;">職業性格探索</h1>
-            <p class="mb-4 mx-auto" style="max-width: 800px; color: #666666; display: inline-block; text-align: left;">
-                透過各種專業職涯測驗，深入了解自己的職業性格特質，從而找到最適合的職業發展方向。測驗結果能夠顯示您的優勢領域和潛力發展空間。
+            <p class="mb-4 mx-auto" style="max-width: 800px; color: #666666; display: inline-block; text-align: left; font-size: 1.1rem">
+                透過各種專業職涯測驗，深入了解自己的職業性格特質，從而找到最適合的職業發展方向。<br>測驗結果能夠顯示我的優勢領域和潛力發展空間。
             </p>
             
-            <!-- 職涯探索插圖 - 使用SVG替代圖片 -->
-            <div class="text-center mb-4">
-                <svg width="300" height="220" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
-                    <!-- 背景圓形 -->
-                    <circle cx="150" cy="110" r="100" fill="#f0f4ff" />
-                    
-                    <!-- 中央指南針 -->
-                    <circle cx="150" cy="110" r="70" fill="white" stroke="#6b7cbf" stroke-width="2" />
-                    <circle cx="150" cy="110" r="5" fill="#ffb84d" />
-                    
-                    <!-- 方向標記 -->
-                    <text x="150" y="30" text-anchor="middle" fill="#6b7cbf" font-weight="bold">R</text>
-                    <text x="150" y="195" text-anchor="middle" fill="#6b7cbf" font-weight="bold">S</text>
-                    <text x="70" y="110" text-anchor="middle" fill="#6b7cbf" font-weight="bold">A</text>
-                    <text x="230" y="110" text-anchor="middle" fill="#6b7cbf" font-weight="bold">E</text>
-                    <text x="110" y="70" text-anchor="middle" fill="#6b7cbf" font-weight="bold">I</text>
-                    <text x="190" y="150" text-anchor="middle" fill="#6b7cbf" font-weight="bold">C</text>
-                    
-                    <!-- 指南針指針 -->
-                    <line x1="150" y1="110" x2="115" y2="65" stroke="#ffb84d" stroke-width="3" />
-                    <polygon points="115,65 110,60 120,60" fill="#ffb84d" />
-                    
-                    <!-- 卡片 -->
-                    <rect x="210" y="40" width="70" height="30" rx="5" fill="white" stroke="#6b7cbf" stroke-width="1" />
-                    <text x="245" y="60" text-anchor="middle" fill="#6b7cbf" font-size="12">職涯探索</text>
-                    
-                    <rect x="20" y="140" width="70" height="30" rx="5" fill="white" stroke="#6b7cbf" stroke-width="1" />
-                    <text x="55" y="160" text-anchor="middle" fill="#6b7cbf" font-size="12">潛能發掘</text>
-                </svg>
-            </div>
-            
-            <div class="d-flex flex-wrap justify-content-center mt-4">
+            <div class=" container text-center">
+            <div class="d-flex flex-wrap justify-content-center">
                 <a href="#Holland興趣測驗" class="btn btn-secondary mx-2 mb-2">
                     <i class="fas fa-compass me-2"></i>Holland興趣測驗
                 </a>
@@ -242,101 +229,109 @@
         </div>
     </section>
 
+
     <!-- 主要內容 -->
     <main class="container">
         <!-- Holland Card -->
         <div id="Holland興趣測驗" class="content-block mb-5">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-center mb-4 mb-md-0">
-                    <!-- 使用圖標替代圖片 -->
-                    <div class="test-icon">
-                        <i class="fas fa-compass"></i>
-                    </div>
-                    <h4 class="mt-3" style="color: #6b7cbf;">Holland 測驗</h4>
-                </div>
-                <div class="col-md-8">
+            <div class="content-wrapper">
+                <div class="title-container">
                     <h2 class="section-title mb-4">Holland興趣測驗</h2>
-                    <p class="text-wrap mb-3">職業性格分為實用型R、研究型I、藝術型A、社會型S、企業型E及事務型C六大職業性格類型。</p>
-                    <h3 style="color: #6b7cbf; font-weight: 600; font-size: 1.3rem;">我的職涯測驗結果</h3>
-                    <p class="text-wrap mb-4">我的職業性格代碼為 <strong style="color: #ffb84d;">IRAC</strong> (研究型、實用型、藝術型、事務型)。</p>
-                    
-                    <div class="position-relative mb-4" style="overflow: hidden; border-radius: 12px;">
+                </div>
+                
+                <p class="text-wrap mb-3">職業性格分為實用型R、研究型I、藝術型A、社會型S、企業型E及事務型C六大職業性格類型。</p>
+                <h3 style="color: #6b7cbf; font-weight: 600; font-size: 1.3rem;">我的職涯測驗結果</h3>
+                <p class="text-wrap mb-4">我的職業性格代碼為 <strong style="color: #ffb84d;">IRAC</strong> (研究型、實用型、藝術型、事務型)。</p>
+                
+                <div class="position-relative mb-4" style="overflow: hidden; border-radius: 12px;">
+                    <div class="d-none d-lg-block">
+                        <img src="static/Holland.jpg" alt="職涯測驗結果" class="img-fluid" style="max-width: 85%; margin: 0 auto; display: block;">
+                    </div>
+
+                    <!-- 小屏幕顯示的圖片，大屏幕隱藏 -->
+                    <div class="d-block d-lg-none">
                         <img src="static/Holland.jpg" alt="職涯測驗結果" class="img-fluid w-100">
                     </div>
-                    
-                    <div class="text-end">
-                        <a href="https://guide.104.com.tw/interest" class="text-decoration-none" target="_blank" style="font-weight: 500; color: #6b7cbf; display: inline-flex; align-items: center;">
-                            前往測驗網站
-                            <i class="fas fa-external-link-alt ms-2"></i>
-                        </a>
-                    </div>
+                </div>
+                
+                <div class="text-end">
+                    <a href="https://guide.104.com.tw/interest" class="text-decoration-none" target="_blank" style="font-weight: 500; color: #6b7cbf; display: inline-flex; align-items: center;">
+                        前往測驗網站
+                        <i class="fas fa-external-link-alt ms-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
 
         <!-- CPAS Card -->
         <div id="CPAS人才測評" class="content-block mb-5">
-            <div class="row align-items-center">
-                <div class="col-md-8 order-md-1 order-2">
+            <div class="content-wrapper">
+                <div class="title-container">
                     <h2 class="section-title mb-4">CPAS人才測評</h2>
-                    <p class="text-wrap mb-3">人才性格分為5類適性工作、12項職場核心性格和六大關鍵核心職能。</p>
-                    <h3 style="color: #6b7cbf; font-weight: 600; font-size: 1.3rem;">我的職涯測驗結果</h3>
-                    
-                    <div class="row mt-4">
-                        <div class="col-md-6 mb-3">
-                            <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(107, 124, 191, 0.15);">
-                                <img src="static/CPAS1.jpg" class="img-fluid" alt="CPAS1">
+                </div>
+                
+                <p class="text-wrap mb-3">人才性格分為5類適性工作、12項職場核心性格和六大關鍵核心職能。</p>
+                <h3 style="color: #6b7cbf; font-weight: 600; font-size: 1.3rem;">我的職涯測驗結果</h3>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-3">
+                        <div style="overflow: hidden;">
+                            <div class="d-none d-lg-block">
+                                <img src="static/CPAS1.jpg" alt="CPAS1" class="img-fluid" style="max-width: 85%; margin: 0 auto; display: block;">
                             </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(107, 124, 191, 0.15);">
-                                <img src="static/CPAS2.jpg" class="img-fluid" alt="CPAS2">
+                            <!-- 小屏幕顯示的圖片，大屏幕隱藏 -->
+                            <div class="d-block d-lg-none">
+                                <img src="static/CPAS1.jpg" alt="CPAS1" class="img-fluid w-100">
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="text-end mt-3">
-                        <a href="https://cpas2.career.com.tw/" class="text-decoration-none" target="_blank" style="font-weight: 500; color: #6b7cbf; display: inline-flex; align-items: center;">
-                            前往測驗網站
-                            <i class="fas fa-external-link-alt ms-2"></i>
-                        </a>
+                    <div class="col-md-6 mb-3">
+                        <div style="overflow: hidden;">
+                            <div class="d-none d-lg-block">
+                                <img src="static/CPAS2.jpg" alt="CPAS2" class="img-fluid" style="max-width: 85%; margin: 0 auto; display: block;">
+                            </div>
+                            <!-- 小屏幕顯示的圖片，大屏幕隱藏 -->
+                            <div class="d-block d-lg-none">
+                                <img src="static/CPAS2.jpg" alt="CPAS2" class="img-fluid w-100">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4 text-center mb-4 mb-md-0 order-md-2 order-1">
-                    <!-- 使用圖標替代圖片 -->
-                    <div class="test-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h4 class="mt-3" style="color: #6b7cbf;">CPAS 測評</h4>
+                
+                <div class="text-end mt-3">
+                    <a href="https://cpas2.career.com.tw/" class="text-decoration-none" target="_blank" style="font-weight: 500; color: #6b7cbf; display: inline-flex; align-items: center;">
+                        前往測驗網站
+                        <i class="fas fa-external-link-alt ms-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
 
         <!-- UCAN Card -->
         <div id="UCAN職業探索" class="content-block mb-5">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-center mb-4 mb-md-0">
-                    <!-- 使用圖標替代圖片 -->
-                    <div class="test-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h4 class="mt-3" style="color: #6b7cbf;">UCAN 探索</h4>
-                </div>
-                <div class="col-md-8">
+            <div class="content-wrapper">
+                <div class="title-container">
                     <h2 class="section-title mb-4">UCAN職業興趣探索診斷</h2>
-                    <p class="text-wrap mb-3">以「16種職涯類型」與「職業性格」解釋在職業選擇的偏好。</p>
-                    <h3 style="color: #6b7cbf; font-weight: 600; font-size: 1.3rem;">我的職涯測驗結果</h3>
-                    
-                    <div class="position-relative mb-4 mt-3" style="overflow: hidden; border-radius: 12px; box-shadow: 0 5px 15px rgba(107, 124, 191, 0.15);">
-                        <img src="static/UCAN.jpg" class="img-fluid w-100" alt="UCAN">
+                </div>
+                
+                <p class="text-wrap mb-3">以「16種職涯類型」與「職業性格」解釋在職業選擇的偏好。</p>
+                <h3 style="color: #6b7cbf; font-weight: 600; font-size: 1.3rem;">我的職涯測驗結果</h3>
+                
+                <div class="position-relative mb-4 mt-3" style="overflow: hidden;">
+                    <div class="d-none d-lg-block">
+                        <img src="static/UCAN.jpg" alt="UCAN" class="img-fluid" style="max-width: 85%; margin: 0 auto; display: block;">
                     </div>
-                    
-                    <div class="text-end">
-                        <a href="https://ucan.moe.edu.tw/" class="text-decoration-none" target="_blank" style="font-weight: 500; color: #6b7cbf; display: inline-flex; align-items: center;">
-                            前往測驗網站
-                            <i class="fas fa-external-link-alt ms-2"></i>
-                        </a>
+                    <!-- 小屏幕顯示的圖片，大屏幕隱藏 -->
+                    <div class="d-block d-lg-none">
+                        <img src="static/UCAN.jpg" alt="UCAN" class="img-fluid w-100">
                     </div>
+                </div>
+                
+                <div class="text-end">
+                    <a href="https://ucan.moe.edu.tw/" class="text-decoration-none" target="_blank" style="font-weight: 500; color: #6b7cbf; display: inline-flex; align-items: center;">
+                        前往測驗網站
+                        <i class="fas fa-external-link-alt ms-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -385,61 +380,12 @@
                 </div>
             </div>
             
-            <!-- 生成總結圖表 (雷達圖) -->
+            <!-- 職業適配圖 -->
             <div class="text-center mt-4">
-                <svg width="600" height="400" viewBox="0 0 600 400" class="radar-chart">
-                    <!-- 背景 -->
-                    <rect width="600" height="400" fill="white" rx="12" ry="12" />
-                    
-                    <!-- 圖表標題 -->
-                    <text x="300" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#6b7cbf">職涯能力總結分析</text>
-                    
-                    <!-- 雷達圖背景 -->
-                    <circle cx="300" cy="210" r="150" fill="rgba(107, 124, 191, 0.05)" stroke="#ccc" stroke-width="1" />
-                    <circle cx="300" cy="210" r="120" fill="none" stroke="#ccc" stroke-width="1" />
-                    <circle cx="300" cy="210" r="90" fill="none" stroke="#ccc" stroke-width="1" />
-                    <circle cx="300" cy="210" r="60" fill="none" stroke="#ccc" stroke-width="1" />
-                    <circle cx="300" cy="210" r="30" fill="none" stroke="#ccc" stroke-width="1" />
-                    
-                    <!-- 雷達圖軸線 -->
-                    <line x1="300" y1="60" x2="300" y2="360" stroke="#ccc" stroke-width="1" />
-                    <line x1="150" y1="210" x2="450" y2="210" stroke="#ccc" stroke-width="1" />
-                    <line x1="196" y1="106" x2="404" y2="314" stroke="#ccc" stroke-width="1" />
-                    <line x1="196" y1="314" x2="404" y2="106" stroke="#ccc" stroke-width="1" />
-                    
-                    <!-- 雷達圖軸標籤 -->
-                    <text x="350" y="62" text-anchor="middle" font-size="14" fill="#6b7cbf">研究型 (I)</text>
-                    <text x="300" y="380" text-anchor="middle" font-size="14" fill="#6b7cbf">社會型 (S)</text>
-                    <text x="130" y="215" text-anchor="middle" font-size="14" fill="#6b7cbf">藝術型 (A)</text>
-                    <text x="470" y="215" text-anchor="middle" font-size="14" fill="#6b7cbf">企業型 (E)</text>
-                    <text x="180" y="100" text-anchor="middle" font-size="14" fill="#6b7cbf">實用型 (R)</text>
-                    <text x="420" y="330" text-anchor="middle" font-size="14" fill="#6b7cbf">事務型 (C)</text>
-                    
-                    <!-- 雷達圖數據區域 -->
-                    <polygon points="300,75 225,140 240,210 325,320 380,275" fill="rgba(255, 184, 77, 0.3)" stroke="#ffb84d" stroke-width="2" />
-                    
-                    <!-- 雷達圖數據點 -->
-                    <circle cx="300" cy="75" r="6" fill="#ffb84d" /> <!-- I: 90% -->
-                    <circle cx="225" cy="140" r="6" fill="#ffb84d" /> <!-- R: 80% -->
-                    <circle cx="240" cy="210" r="6" fill="#ffb84d" /> <!-- A: 60% -->
-                    <circle cx="325" cy="320" r="6" fill="#ffb84d" /> <!-- C: 45% -->
-                    <circle cx="380" cy="275" r="6" fill="#ffb84d" /> <!-- E: 30% -->
-                    
-                    <!-- 數據指標 -->
-                    <text x="300" y="65" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">90%</text>
-                    <text x="220" cy="130" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">80%</text>
-                    <text x="230" cy="210" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">60%</text>
-                    <text x="325" cy="335" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">45%</text>
-                    <text x="390" cy="275" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">30%</text>
-                    
-                    <!-- 圖例 -->
-                    <br>
-                    <rect x="230" y="350" width="15" height="15" fill="rgba(255, 184, 77, 0.3)" stroke="#ffb84d" stroke-width="2" />
-                    <text x="255" y="363" fill="#333" font-size="14">個人職涯傾向</text>
-                </svg>
+                <img src="static/job.jpg" alt="職業適配圖" class="img-fluid" style="max-width: 100%; border-radius: 8px;">
             </div>
             
-            <p class="mt-4" style="color: #666666;">根據以上測驗結果，我展現出較強的研究分析能力與實用技術應用傾向，同時兼具藝術創意與條理性思維。這樣的組合非常適合在資訊科技領域中尋求發展，特別是需要同時運用邏輯思維和創意解決問題的職位。</p>
+            <p class="mt-4" style="color: #666666;">根據以上測驗結果，我發現我的研究分析能力與實用技術應用較強，同時兼具藝術創意與條理性思維。這樣的組合在資訊科技領域中常見，特別是需要同時運用邏輯思維和創意解決問題的職位。</p>
         </div>
     </main>
 
